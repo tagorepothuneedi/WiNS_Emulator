@@ -16,8 +16,8 @@ How to Build topology file:
     - tx_power1 = txpower from radio to radio in 2d matrix
     - channel1 = channel from radio to radio in 2d matrix
     - propagation_model(logDistance,logNormalShadowing,custom_model)= loss model to use 
-- Naming Convention of Nodes :
-- Dependencies:
+
+Dependencies:
 - Need Linux kernel 5.4.X 
 - Support for Linux MAC80211_HWSIM , Batman_ADV Driver Modules  
 - Install libnl3.5.0 ( https://github.com/thom311/libnl/releases/download/libnl3_5_0/libnl-3.5.0.tar.gz) {install internal dependencies for libnl if you get any while installing libnl}
