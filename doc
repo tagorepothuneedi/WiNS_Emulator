@@ -1,0 +1,64 @@
+sudo modprobe mac80211_hwsim radios=4
+sudo ip addr add 10.0.0.1 brd 10.0.0.255 dev wlan0
+
+sudo ip link set up dev wlan0
+
+sudo ip addr add 10.0.0.2 brd 10.0.0.255 dev wlan1
+
+sudo ip link set up dev wlan1
+
+ 
+
+sudo ip netns add ns1
+
+sudo ip netns add ns2
+
+sudo iw phy phy1 set netns name ns1
+
+sudo iw phy phy2 set netns name ns2
+
+ 
+
+sudo ip netns exec ns1 iw dev wlan0 interface add mesh0 type mesh
+
+sudo ip netns exec ns1 ip link set address 42:00:00:00:00:00 dev mesh0
+
+sudo ip netns exec ns1 ip link set up dev mesh0
+
+#sudo ip netns exec ns1 iw dev wlan0 mesh join mymesh
+
+sudo ip netns exec ns1 ip link set up dev wlan0
+
+#sudo ip netns exec ns1 iw dev wlan0 mesh join mymesh
+
+sudo ip netns exec ns1 ip link set up dev lo
+
+sudo ip netns exec ns1  ip link set up dev mesh0
+sudo ip netns exec ns1 iw dev mesh0 mesh join mymesh
+
+sudo ip netns exec ns1 ip addr add 10.0.0.1/24 brd 10.0.0.255 dev mesh0
+
+ 
+
+sudo ip netns exec ns2 iw dev wlan1 interface add mesh1 type mesh
+
+sudo ip netns exec ns2 ip link set up dev mesh1
+
+sudo ip netns exec ns2 ip addr add 10.0.0.2/24 brd 10.0.0.255 dev mesh1
+
+sudo ip netns exec ns2 ip link set up dev lo
+
+sudo ip netns exec ns2 ip link set down dev mesh1
+
+sudo ip netns exec ns2 ip link set address 42:00:00:00:01:00 dev mesh1
+
+sudo ip netns exec ns2 ip link set up dev mesh1
+
+sudo ip netns exec ns2 iw dev mesh1 mesh join mymesh
+
+
+
+
+
+sudo ip netns exec ns1 iw reg set US
+sudo ip netns exec ns1 iw dev mesh0 set freq 5200 80 5210
