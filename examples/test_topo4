@@ -1,0 +1,8 @@
+noofnodes=4
+radio_per_node={'ns1':2,'ns2':2,'ns3':2,'ns4':2}
+channel={'ns1':[1,6],'ns2':[1,6],'ns3':[1,6],'ns4':[1,6]}
+tx_power={'ns1':[15,15],'ns2':[15,15],'ns3':[15,15],'ns4':[15,15]}
+position={'ns1':[-50,0],'ns2':[0,10],'ns3':[0,0],'ns4':[50,0]}
+link_status=[['False','True','False'],['True','False','True'],['False','True','False']]
+tx_power1=[[0,15,0,15],[15,0,15,0],[0,15,0,15],[15,0,15,0]]
+channel1=[[0,1,0,6],[1,0,6,0],[0,6,0,1],[6,0,1,0]]

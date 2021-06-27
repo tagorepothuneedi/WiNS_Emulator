@@ -1,0 +1,13 @@
+noofnodes=2
+topology='uav'
+node_type={'ns1':'uav','ns2':'aer'}
+radio_per_node={'ns1':1,'ns2':1}
+channel={'ns1':[1],'ns2':[1]}
+tx_power={'ns1':[23],'ns2':[23]}
+position={'ns1':[485,401,104],'ns2':[ 441,554,84]}
+link_status=[['False','True'],['True','False']]
+tx_power1=[[0,5],[5,0]]
+channel1=[[0,1],[1,0]]
+propagation_model='custom_model'
+
+position={'ns1':[ 503 ,558,140],'ns2':[ 500 ,550,  131],'ns3':[536,500,90],'ns4':[441,554,114],'ns5':[ 450,560,114]}

@@ -1,0 +1,10 @@
+noofnodes=5
+topology='mesh'
+node_type={'ns1':'mesh','ns2':'mesh','ns3':'mesh','ns4':'mesh','ns5':'mesh'}
+radio_per_node={'ns1':1,'ns2':1,'ns3':1,'ns4':1,'ns5':1}
+channel={'ns1':[1],'ns2':[1],'ns3':[1],'ns4':[1],'ns5':[1]}
+tx_power={'ns1':[23],'ns2':[23],'ns3':[23],'ns4':[23],'ns5':[23]}
+position={'ns1':[10,10,0],'ns2':[20,10,0],'ns3':[20,35,0],'ns4':[40,35,0],'ns5':[30,10,0]}
+tx_power1=[[0,23,0,0,0],[23,0,23,0,23],[0,23,0,23,0],[0,0,23,0,0],[0,23,0,0,0]]
+channel1=[[0,1,0,0,0],[1,0,1,0,1],[0,1,0,1,0],[0,0,1,0,0],[0,1,0,0,0]]
+propagation_model='logNormalShadowing'

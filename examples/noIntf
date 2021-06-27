@@ -1,0 +1,10 @@
+noofnodes=5
+radio_per_node={'ns1':1,'ns2':3,'ns3':2,'ns4':1,'ns5':1}
+channel={'ns1':[36],'ns2':[36,6,11],'ns3':[1,6],'ns4':[1],'ns5':[11]}
+tx_power={'ns1':[15],'ns2':[15,15,15],'ns3':[15,15],'ns4':[15],'ns5':[15]}
+position={'ns1':[10,10,0],'ns2':[20,10,0],'ns3':[20,35,0],'ns4':[40,35,0],'ns5':[30,10,0]}
+link_status=[['False','True','False'],['True','False','True'],['False','True','False']]
+tx_power1=[[0,15,0,0,0],[15,0,15,0,15],[0,15,0,15,0],[0,0,15,0,0],[0,15,0,0,0]]
+channel1=[[0,36,0,0,0],[36,0,6,0,11],[0,6,0,1,0],[0,0,1,0,0],[0,11,0,0,0]]
+propagation_model='custom_model'
+propagation_model='logNormalShadowing'

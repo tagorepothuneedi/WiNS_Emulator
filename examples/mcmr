@@ -1,0 +1,50 @@
+sudo modprobe mac80211_hwsim radios=4
+
+sudo ip netns add ns1
+sudo ip netns add ns2
+sudo ip netns add ns3
+
+sudo iw phy phy1 set netns name ns1
+sudo iw phy phy2 set netns name ns2
+sudo iw phy phy3 set netns name ns2
+sudo iw phy phy4 set netns name ns3
+
+
+sudo ip netns exec ns1 iw dev wlan0 interface add mesh0 type mesh
+sudo ip netns exec ns2 iw dev wlan1 interface add mesh1 type mesh
+sudo ip netns exec ns2 iw dev wlan2 interface add mesh2 type mesh
+sudo ip netns exec ns3 iw dev wlan3 interface add mesh3 type mesh
+
+sudo ip netns exec ns1 iw dev mesh0 set channel 1 NOHT
+sudo ip netns exec ns2 iw dev mesh1 set channel 1 NOHT
+sudo ip netns exec ns2 iw dev mesh2 set channel 6 NOHT
+sudo ip netns exec ns3 iw dev mesh3 set channel 6 NOHT
+
+sudo ip netns exec ns1 ip link set up dev mesh0 
+sudo ip netns exec ns2 ip link set up dev mesh1
+sudo ip netns exec ns2 ip link set up dev mesh2
+sudo ip netns exec ns3 ip link set up dev mesh3
+
+sudo ip netns exec ns1 iw dev mesh0 mesh join mymesh
+sudo ip netns exec ns2 iw dev mesh1 mesh join mymesh
+sudo ip netns exec ns2 iw dev mesh2 mesh join mymesh
+sudo ip netns exec ns3 iw dev mesh3 mesh join mymesh
+
+sudo modprobe batman-adv
+sudo ip netns exec ns1 batctl if add mesh0
+sudo ip netns exec ns1 ip link set up dev bat0
+sudo ip netns exec ns1 ip link set address 22:00:00:00:00:00 dev bat0
+sudo ip netns exec ns1 ip addr add 192.168.123.1/24 brd 192.168.123.255 dev bat0
+
+sudo ip netns exec ns2 batctl if add mesh1
+sudo ip netns exec ns2 ip link set up dev bat0
+sudo ip netns exec ns1 ip link set address 22:00:00:00:01:00 dev bat0
+sudo ip netns exec ns2 ip addr add 192.168.123.2/24 brd 192.168.123.255 dev bat0
+
+sudo ip netns exec ns2 batctl if add mesh2
+
+sudo ip netns exec ns3 batctl if add mesh3
+sudo ip netns exec ns3 ip link set up dev bat0
+sudo ip netns exec ns1 ip link set address 22:00:00:00:02:00 dev bat0
+sudo ip netns exec ns3 ip addr add 192.168.123.3/24 brd 192.168.123.255 dev bat0
+
